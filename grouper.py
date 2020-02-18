@@ -50,6 +50,10 @@ def slice_list(lst: List[Any], n: int) -> List[List[Any]]:
     True
     """
 
+    # new_lst = []
+    #
+    # new_lst.append(lst[::n])
+
     # if n <= len(lst):
     #     new_big_lst = []
     #     for items in lst:
@@ -218,7 +222,6 @@ class GreedyGrouper(Grouper):
         The final group created may have fewer than N members if that is
         required to make sure all students in <course> are members of a group.
         """
-        # TODO: complete the body of this method
 
 
 class WindowGrouper(Grouper):
@@ -319,11 +322,11 @@ class Group:
         """
 
         lst_of_mem = []
-        for Student in self._members:
-            lst_of_mem.append(Student)
+        for student in self._members:
+            lst_of_mem.append(student)
         copy = []
-        for Student in lst_of_mem:
-            copy.append(Student)
+        for student in lst_of_mem:
+            copy.append(student)
         return copy
 
 
@@ -366,15 +369,6 @@ class Grouping:
                 s = s + Student.name
         return s
 
-        #     # s = s + Student.name + '\n'
-
-        # Group.__str__
-
-        #     s = s + Group.__str__
-        #     for Student.name in Group._members:
-        #         s = s + Student(self.name)
-        # return s
-
     def add_group(self, group: Group) -> bool:
         """
         Add <group> to this grouping and return True.
@@ -382,7 +376,12 @@ class Grouping:
         Iff adding <group> to this grouping would violate a representation
         invariant don't add it and return False instead.
         """
-        # TODO: complete the body of this method
+
+        # if len(group) > 0:
+        #
+        # check to see if there are multiple students with comparing ids
+        #
+        # if self._groups.append(group)
 
     def get_groups(self) -> List[Group]:
         """ Return a list of all groups in this grouping.
@@ -391,12 +390,12 @@ class Grouping:
         """
 
         lst_of_groups = []
-        for Group._members in self._groups:
-            lst_of_groups.append(Group._members)
+        for members in self._groups:
+            lst_of_groups.append(members)
 
         copy = []
-        for Group._members in lst_of_groups:
-            copy.append(Group._members)
+        for members in lst_of_groups:
+            copy.append(members)
 
         return copy
 
