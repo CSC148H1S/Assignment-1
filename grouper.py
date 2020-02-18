@@ -312,8 +312,8 @@ class Group:
         """
 
         s = ''
-        for Student.name in self._members:
-            s = s + Student.name
+        for member in self._members:
+            s = s + member.name
         return s
 
     def get_members(self) -> List[Student]:
@@ -352,7 +352,8 @@ class Grouping:
     def __len__(self) -> int:
         """ Return the number of groups in this grouping """
 
-        return len(self._groups)
+        total = len(self._groups)
+        return total
 
     def __str__(self) -> str:
         """
@@ -363,11 +364,20 @@ class Grouping:
         You can choose the precise format of this string.
         """
 
-        s = ''
-        for Group._members in self._groups:
-            for Student.name in Group._members:
-                s = s + Student.name
-        return s
+        string = ''
+        for groups in self._groups:
+            group = Group.__str__(groups)
+            string = string + group + '\n'
+        return string
+
+    # _members is a private attribute of class Group and we can't access it in
+    # class Grouping because there does not exist an inheritance relationship
+    # between class Group and class Grouping.
+
+    # You should consider an alternative design that does not require you to
+    # access the private attributes of other classes. In particular, pay close
+    # attention to the public interface of the classes you are using in each
+    # method.
 
     def add_group(self, group: Group) -> bool:
         """
@@ -377,11 +387,13 @@ class Grouping:
         invariant don't add it and return False instead.
         """
 
-        # if len(group) > 0:
-        #
-        # check to see if there are multiple students with comparing ids
-        #
-        # if self._groups.append(group)
+        if len(group) > 0:
+            for gr in self._groups:
+                for member in group.get_members():
+                    if gr.__contains__(member):
+                        return False
+            self._groups.append(group)
+        return True
 
     def get_groups(self) -> List[Group]:
         """ Return a list of all groups in this grouping.
