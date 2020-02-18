@@ -109,7 +109,8 @@ class Grouper:
         === Precondition ===
         group_size > 1
         """
-        # TODO: complete the body of this method
+
+        self.group_size = group_size
 
     def make_grouping(self, course: Course, survey: Survey) -> Grouping:
         """ Return a grouping for all students in <course> using the questions
@@ -308,15 +309,22 @@ class Group:
         """
 
         s = ''
-        for member in self._members:
-            s = s + member
+        for Student.name in self._members:
+            s = s + Student.name
         return s
 
     def get_members(self) -> List[Student]:
         """ Return a list of members in this group. This list should be a
         shallow copy of the self._members attribute.
         """
-        # TODO: complete the body of this method
+
+        lst_of_mem = []
+        for Student in self._members:
+            lst_of_mem.append(Student)
+        copy = []
+        for Student in lst_of_mem:
+            copy.append(Student)
+        return copy
 
 
 class Grouping:
@@ -335,11 +343,13 @@ class Grouping:
 
     def __init__(self) -> None:
         """ Initialize a Grouping that contains zero groups """
-        # TODO: complete the body of this method
+
+        self._groups = []
 
     def __len__(self) -> int:
         """ Return the number of groups in this grouping """
-        # TODO: complete the body of this method
+
+        return len(self._groups)
 
     def __str__(self) -> str:
         """
@@ -349,7 +359,21 @@ class Grouping:
 
         You can choose the precise format of this string.
         """
-        # TODO: complete the body of this method
+
+        s = ''
+        for Group._members in self._groups:
+            for Student.name in Group._members:
+                s = s + Student.name
+        return s
+
+        #     # s = s + Student.name + '\n'
+
+        # Group.__str__
+
+        #     s = s + Group.__str__
+        #     for Student.name in Group._members:
+        #         s = s + Student(self.name)
+        # return s
 
     def add_group(self, group: Group) -> bool:
         """
@@ -365,7 +389,16 @@ class Grouping:
         This list should be a shallow copy of the self._groups
         attribute.
         """
-        # TODO: complete the body of this method
+
+        lst_of_groups = []
+        for Group._members in self._groups:
+            lst_of_groups.append(Group._members)
+
+        copy = []
+        for Group._members in lst_of_groups:
+            copy.append(Group._members)
+
+        return copy
 
 
 if __name__ == '__main__':
