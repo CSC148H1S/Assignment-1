@@ -81,11 +81,11 @@ class Student:
         Return True iff this student has an answer for a question with the same
         id as <question> and that answer is a valid answer for <question>.
         """
+
         if question.id in self._record:
             ans = self._record.get(question.id)
             return question.validate_answer(ans)
-        else:
-            return False
+        return False
 
     def set_answer(self, question: Question, answer: Answer) -> None:
         """
@@ -109,7 +109,7 @@ class Course:
     name: the name of the course
     students: a list of students enrolled in the course
 
-    === Private Atributes ==
+    === Private Attributes ==
     _students_ids: list of students' ids
 
     === Representation Invariants ===
@@ -137,16 +137,18 @@ class Course:
         do not add any of the students in <students> to the course.
         """
 
+        # RIs:
+        # 1. No two students in this course have the same id
+        # 2. name is not the empty string
+
         candidate_list = []
         candidate_id_list = []
         for arg_student in students:
-            if arg_student.id in self._student_ids or \
-                    len(arg_student.name) == 0:
-                pass
-            else:
-                candidate_list.append(arg_student)
-                candidate_id_list.append(arg_student.id)
-        if len(candidate_list) == len(self.students):
+            if arg_student.id not in self._student_ids:
+                if not len(arg_student.name) == 0:
+                    candidate_list.append(arg_student)
+                    candidate_id_list.append(arg_student.id)
+        if len(candidate_list) == len(students):
             # this means ALL students were cleared to be added
             self.students += candidate_list
             self._student_ids += candidate_id_list
